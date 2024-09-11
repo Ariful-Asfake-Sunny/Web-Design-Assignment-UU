@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profit Calculator</title>
+<!--     <link rel="stylesheet" href="styles.css"> -->
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #e3ffbd;
+        }
+
+        .container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        input:focus {
+            border-color: #4caf50;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        input[readonly] {
+            background-color: #f9f9f9;
+            cursor: not-allowed;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Calculate Your Total Sell Profit</h2>
+
+        <form id="profitForm">
+            <div class="input-group">
+                <label for="costPrice">Cost Price</label>
+                <input type="number" id="costPrice" placeholder="Enter cost price">
+            </div>
+            <div class="input-group">
+                <label for="salePrice">Sale Price</label>
+                <input type="number" id="salePrice" placeholder="Enter sale price">
+            </div>
+            <div class="input-group">
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" placeholder="Enter quantity">
+            </div>
+            <div class="input-group">
+                <label for="totalProfit">Total Profit</label>
+                <input type="number" id="totalProfit" readonly>
+            </div>
+            <button type="button" onclick="GetProfit()">Calculate</button>
+        </form>
+
+    </div>
+  
+  
+
+<!--     <script src="script.js"></script> -->
+<script type="text/javascript">
+    function GetProfit() {
+
+        //values entered by the user
+        let costPrice = document.getElementById("costPrice").value;
+        let salePrice = document.getElementById("salePrice").value;
+        let quantity = document.getElementById("quantity").value;
+
+        // Convert values to numbers
+        costPrice = Number(costPrice);
+        salePrice = Number(salePrice);
+        quantity = Number(quantity);
+
+        // Check if fields are empty or invalid input
+        if (isNaN(costPrice) || isNaN(salePrice) || isNaN(quantity) || costPrice === 0 || salePrice === 0 || quantity === 0) {
+            alert("Please fill in all fields with valid numbers");
+            return;
+        }
+
+        // Calculate total profit
+        let profits = (salePrice - costPrice) * quantity;
+        document.getElementById("totalProfit").value = profits.toFixed(2);
+    }
+</script>
+</body>
+</html>
